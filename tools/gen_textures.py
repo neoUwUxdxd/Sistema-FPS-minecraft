@@ -260,7 +260,7 @@ def gen_reticle():
     rgb[..., 0] = 255
     rgb[..., 1] = 40 + 200 * core
     rgb[..., 2] = 30 + 180 * core
-    save(to_img(rgb, a * 255), "gun", "reticle_dot.png")
+    save(to_img(rgb * a[..., None], a * 255), "gun", "reticle_dot.png")
 
     # marcas grabadas (selector SAFE/SEMI/AUTO etc.) en blanco sobre transparente
     img = Image.new("RGBA", (256, 64), (0, 0, 0, 0))
@@ -297,7 +297,7 @@ def gen_muzzle_flash():
         rgb[..., 0] = 255
         rgb[..., 1] = 120 + 135 * inten ** 0.6
         rgb[..., 2] = 30 + 200 * inten ** 2.2
-        save(to_img(rgb * inten[..., None] ** 0.25, inten * 255), "effect", f"muzzle_flash_{k}.png")
+        save(to_img(rgb * inten[..., None], inten * 255), "effect", f"muzzle_flash_{k}.png")
     # fogonazo lateral (vista lateral, cono)
     S = 256
     y, x = np.mgrid[0:S, 0:S] / S
@@ -310,7 +310,7 @@ def gen_muzzle_flash():
     rgb[..., 0] = 255
     rgb[..., 1] = 130 + 125 * inten
     rgb[..., 2] = 40 + 200 * inten ** 2
-    save(to_img(rgb, inten * 255), "effect", "muzzle_flash_side.png")
+    save(to_img(rgb * inten[..., None], inten * 255), "effect", "muzzle_flash_side.png")
 
 
 def gen_hud():
