@@ -1,0 +1,24 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "equipment",
+ "pattern": [
+  "III",
+  "PLL",
+  " LL"
+ ],
+ "key": {
+  "I": {
+   "item": "minecraft:iron_ingot"
+  },
+  "P": {
+   "item": "fpsrealista:gun_parts"
+  },
+  "L": {
+   "item": "minecraft:oak_planks"
+  }
+ },
+ "result": {
+  "id": "fpsrealista:shotgun_12g",
+  "count": 1
+ }
+}

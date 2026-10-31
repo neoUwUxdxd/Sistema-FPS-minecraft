@@ -1,0 +1,382 @@
+{
+ "pistol_shot": {
+  "sounds": [
+   {
+    "name": "fpsrealista:pistol_shot_0",
+    "attenuation_distance": 96
+   },
+   {
+    "name": "fpsrealista:pistol_shot_1",
+    "attenuation_distance": 96
+   },
+   {
+    "name": "fpsrealista:pistol_shot_2",
+    "attenuation_distance": 96
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.shot"
+ },
+ "carbine_shot": {
+  "sounds": [
+   {
+    "name": "fpsrealista:carbine_shot_0",
+    "attenuation_distance": 160
+   },
+   {
+    "name": "fpsrealista:carbine_shot_1",
+    "attenuation_distance": 160
+   },
+   {
+    "name": "fpsrealista:carbine_shot_2",
+    "attenuation_distance": 160
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.shot"
+ },
+ "rifle_shot": {
+  "sounds": [
+   {
+    "name": "fpsrealista:rifle_shot_0",
+    "attenuation_distance": 170
+   },
+   {
+    "name": "fpsrealista:rifle_shot_1",
+    "attenuation_distance": 170
+   },
+   {
+    "name": "fpsrealista:rifle_shot_2",
+    "attenuation_distance": 170
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.shot"
+ },
+ "shotgun_shot": {
+  "sounds": [
+   {
+    "name": "fpsrealista:shotgun_shot_0",
+    "attenuation_distance": 150
+   },
+   {
+    "name": "fpsrealista:shotgun_shot_1",
+    "attenuation_distance": 150
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.shot"
+ },
+ "sniper_shot": {
+  "sounds": [
+   {
+    "name": "fpsrealista:sniper_shot_0",
+    "attenuation_distance": 256
+   },
+   {
+    "name": "fpsrealista:sniper_shot_1",
+    "attenuation_distance": 256
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.shot"
+ },
+ "dry_fire": {
+  "sounds": [
+   {
+    "name": "fpsrealista:dry_fire",
+    "attenuation_distance": 8
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.dry_fire"
+ },
+ "fire_select": {
+  "sounds": [
+   {
+    "name": "fpsrealista:fire_select",
+    "attenuation_distance": 8
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.fire_select"
+ },
+ "mag_out": {
+  "sounds": [
+   {
+    "name": "fpsrealista:mag_out_0",
+    "attenuation_distance": 12
+   },
+   {
+    "name": "fpsrealista:mag_out_1",
+    "attenuation_distance": 12
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.mag_out"
+ },
+ "mag_in": {
+  "sounds": [
+   {
+    "name": "fpsrealista:mag_in_0",
+    "attenuation_distance": 12
+   },
+   {
+    "name": "fpsrealista:mag_in_1",
+    "attenuation_distance": 12
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.mag_in"
+ },
+ "slide_back": {
+  "sounds": [
+   {
+    "name": "fpsrealista:slide_back",
+    "attenuation_distance": 12
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.slide"
+ },
+ "slide_release": {
+  "sounds": [
+   {
+    "name": "fpsrealista:slide_release",
+    "attenuation_distance": 14
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.slide"
+ },
+ "charge_back": {
+  "sounds": [
+   {
+    "name": "fpsrealista:charge_back",
+    "attenuation_distance": 12
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.charge"
+ },
+ "charge_release": {
+  "sounds": [
+   {
+    "name": "fpsrealista:charge_release",
+    "attenuation_distance": 16
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.charge"
+ },
+ "pump_back": {
+  "sounds": [
+   {
+    "name": "fpsrealista:pump_back",
+    "attenuation_distance": 16
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.pump"
+ },
+ "pump_forward": {
+  "sounds": [
+   {
+    "name": "fpsrealista:pump_forward",
+    "attenuation_distance": 16
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.pump"
+ },
+ "shell_insert": {
+  "sounds": [
+   {
+    "name": "fpsrealista:shell_insert_0",
+    "attenuation_distance": 10
+   },
+   {
+    "name": "fpsrealista:shell_insert_1",
+    "attenuation_distance": 10
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.shell_insert"
+ },
+ "bolt_up": {
+  "sounds": [
+   {
+    "name": "fpsrealista:bolt_up",
+    "attenuation_distance": 10
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.bolt"
+ },
+ "bolt_back": {
+  "sounds": [
+   {
+    "name": "fpsrealista:bolt_back",
+    "attenuation_distance": 12
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.bolt"
+ },
+ "bolt_forward": {
+  "sounds": [
+   {
+    "name": "fpsrealista:bolt_forward",
+    "attenuation_distance": 12
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.bolt"
+ },
+ "bolt_down": {
+  "sounds": [
+   {
+    "name": "fpsrealista:bolt_down",
+    "attenuation_distance": 10
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.bolt"
+ },
+ "gun_draw": {
+  "sounds": [
+   {
+    "name": "fpsrealista:gun_draw_0",
+    "attenuation_distance": 8
+   },
+   {
+    "name": "fpsrealista:gun_draw_1",
+    "attenuation_distance": 8
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.draw"
+ },
+ "gun_handle": {
+  "sounds": [
+   {
+    "name": "fpsrealista:gun_handle_0",
+    "attenuation_distance": 6
+   },
+   {
+    "name": "fpsrealista:gun_handle_1",
+    "attenuation_distance": 6
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.handle"
+ },
+ "casing": {
+  "sounds": [
+   {
+    "name": "fpsrealista:casing_0",
+    "attenuation_distance": 10
+   },
+   {
+    "name": "fpsrealista:casing_1",
+    "attenuation_distance": 10
+   },
+   {
+    "name": "fpsrealista:casing_2",
+    "attenuation_distance": 10
+   },
+   {
+    "name": "fpsrealista:casing_3",
+    "attenuation_distance": 10
+   },
+   {
+    "name": "fpsrealista:casing_4",
+    "attenuation_distance": 10
+   },
+   {
+    "name": "fpsrealista:casing_5",
+    "attenuation_distance": 10
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.casing"
+ },
+ "shell_drop": {
+  "sounds": [
+   {
+    "name": "fpsrealista:shell_drop_0",
+    "attenuation_distance": 10
+   },
+   {
+    "name": "fpsrealista:shell_drop_1",
+    "attenuation_distance": 10
+   },
+   {
+    "name": "fpsrealista:shell_drop_2",
+    "attenuation_distance": 10
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.casing"
+ },
+ "hitmarker": {
+  "sounds": [
+   {
+    "name": "fpsrealista:hitmarker",
+    "attenuation_distance": 4
+   }
+  ]
+ },
+ "headshot": {
+  "sounds": [
+   {
+    "name": "fpsrealista:headshot",
+    "attenuation_distance": 4
+   }
+  ]
+ },
+ "impact_flesh": {
+  "sounds": [
+   {
+    "name": "fpsrealista:impact_flesh_0",
+    "attenuation_distance": 16
+   },
+   {
+    "name": "fpsrealista:impact_flesh_1",
+    "attenuation_distance": 16
+   },
+   {
+    "name": "fpsrealista:impact_flesh_2",
+    "attenuation_distance": 16
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.impact"
+ },
+ "impact_block": {
+  "sounds": [
+   {
+    "name": "fpsrealista:impact_block_0",
+    "attenuation_distance": 20
+   },
+   {
+    "name": "fpsrealista:impact_block_1",
+    "attenuation_distance": 20
+   },
+   {
+    "name": "fpsrealista:impact_block_2",
+    "attenuation_distance": 20
+   },
+   {
+    "name": "fpsrealista:impact_block_3",
+    "attenuation_distance": 20
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.impact"
+ },
+ "whizz": {
+  "sounds": [
+   {
+    "name": "fpsrealista:whizz_0",
+    "attenuation_distance": 24
+   },
+   {
+    "name": "fpsrealista:whizz_1",
+    "attenuation_distance": 24
+   },
+   {
+    "name": "fpsrealista:whizz_2",
+    "attenuation_distance": 24
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.whizz"
+ },
+ "glass_hit": {
+  "sounds": [
+   {
+    "name": "fpsrealista:glass_hit_0",
+    "attenuation_distance": 20
+   },
+   {
+    "name": "fpsrealista:glass_hit_1",
+    "attenuation_distance": 20
+   }
+  ],
+  "subtitle": "subtitles.fpsrealista.impact"
+ }
+}

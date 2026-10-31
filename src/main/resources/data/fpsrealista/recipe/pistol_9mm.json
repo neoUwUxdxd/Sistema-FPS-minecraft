@@ -1,0 +1,26 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "equipment",
+ "pattern": [
+  "PII",
+  " GW"
+ ],
+ "key": {
+  "P": {
+   "item": "fpsrealista:gun_parts"
+  },
+  "I": {
+   "item": "minecraft:iron_ingot"
+  },
+  "G": {
+   "item": "minecraft:gunpowder"
+  },
+  "W": {
+   "item": "minecraft:black_dye"
+  }
+ },
+ "result": {
+  "id": "fpsrealista:pistol_9mm",
+  "count": 1
+ }
+}

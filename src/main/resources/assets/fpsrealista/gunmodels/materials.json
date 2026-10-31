@@ -1,0 +1,87 @@
+{
+ "anodized": {
+  "texture": "fpsrealista:textures/gun/anodized.png",
+  "scale": 9.0,
+  "type": "solid"
+ },
+ "polymer": {
+  "texture": "fpsrealista:textures/gun/polymer.png",
+  "scale": 9.0,
+  "type": "solid"
+ },
+ "grip": {
+  "texture": "fpsrealista:textures/gun/grip.png",
+  "scale": 4.0,
+  "type": "solid"
+ },
+ "parkerized": {
+  "texture": "fpsrealista:textures/gun/parkerized.png",
+  "scale": 9.0,
+  "type": "solid"
+ },
+ "blued": {
+  "texture": "fpsrealista:textures/gun/blued.png",
+  "scale": 12.0,
+  "type": "solid"
+ },
+ "steel": {
+  "texture": "fpsrealista:textures/gun/steel.png",
+  "scale": 8.0,
+  "type": "solid"
+ },
+ "wood": {
+  "texture": "fpsrealista:textures/gun/wood.png",
+  "scale": 22.0,
+  "type": "solid"
+ },
+ "brass": {
+  "texture": "fpsrealista:textures/gun/brass.png",
+  "scale": 3.0,
+  "type": "solid"
+ },
+ "copper": {
+  "texture": "fpsrealista:textures/gun/copper.png",
+  "scale": 3.0,
+  "type": "solid"
+ },
+ "rubber": {
+  "texture": "fpsrealista:textures/gun/rubber.png",
+  "scale": 6.0,
+  "type": "solid"
+ },
+ "fde": {
+  "texture": "fpsrealista:textures/gun/fde.png",
+  "scale": 9.0,
+  "type": "solid"
+ },
+ "bore": {
+  "texture": "fpsrealista:textures/gun/bore.png",
+  "scale": 4.0,
+  "type": "solid"
+ },
+ "shell": {
+  "texture": "fpsrealista:textures/gun/shell.png",
+  "scale": 3.0,
+  "type": "solid"
+ },
+ "glass": {
+  "texture": "fpsrealista:textures/gun/glass.png",
+  "scale": 4.0,
+  "type": "translucent"
+ },
+ "emissive": {
+  "texture": "fpsrealista:textures/gun/emissive.png",
+  "scale": 4.0,
+  "type": "emissive"
+ },
+ "reticle_dot": {
+  "texture": "fpsrealista:textures/gun/reticle_dot.png",
+  "scale": 1.0,
+  "type": "emissive_decal"
+ },
+ "marking": {
+  "texture": "fpsrealista:textures/gun/marking.png",
+  "scale": 1.0,
+  "type": "decal"
+ }
+}

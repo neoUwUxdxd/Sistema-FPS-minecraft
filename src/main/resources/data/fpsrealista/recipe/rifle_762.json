@@ -1,0 +1,27 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "equipment",
+ "pattern": [
+  "IIP",
+  "PRL",
+  " LL"
+ ],
+ "key": {
+  "I": {
+   "item": "minecraft:iron_ingot"
+  },
+  "P": {
+   "item": "fpsrealista:gun_parts"
+  },
+  "R": {
+   "item": "minecraft:redstone"
+  },
+  "L": {
+   "item": "minecraft:spruce_planks"
+  }
+ },
+ "result": {
+  "id": "fpsrealista:rifle_762",
+  "count": 1
+ }
+}

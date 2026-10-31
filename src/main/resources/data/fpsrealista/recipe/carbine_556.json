@@ -1,0 +1,30 @@
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "equipment",
+ "pattern": [
+  "IIP",
+  "PRW",
+  " WB"
+ ],
+ "key": {
+  "I": {
+   "item": "minecraft:iron_ingot"
+  },
+  "P": {
+   "item": "fpsrealista:gun_parts"
+  },
+  "R": {
+   "item": "minecraft:redstone"
+  },
+  "W": {
+   "item": "minecraft:black_dye"
+  },
+  "B": {
+   "item": "minecraft:iron_block"
+  }
+ },
+ "result": {
+  "id": "fpsrealista:carbine_556",
+  "count": 1
+ }
+}
