@@ -470,7 +470,7 @@ def convert_clip(gun, mj, name, clip):
                 continue
             bones_pos.setdefault(target, []).append((t, cp(pp)))
             bones_rot.setdefault(target, []).append((t, cr(rr)))
-        for bn in hidden | set(vis.keys()):
+        for bn in sorted(hidden | set(vis.keys())):
             if bn in model_bones:
                 on = vis.get(bn, bn not in hidden)
                 bones_scale.setdefault(bn, []).append((t, [1.0, 1.0, 1.0] if on else [0.0, 0.0, 0.0]))
@@ -481,7 +481,7 @@ def convert_clip(gun, mj, name, clip):
             bones_pos.setdefault(bn, []).append((t, cp(tp)))
             bones_rot.setdefault(bn, []).append((t, cr(er)))
     bones = {}
-    for bn in set(bones_pos) | set(bones_scale):
+    for bn in sorted(set(bones_pos) | set(bones_scale)):
         d = {}
         if bn in bones_pos:
             d["position"] = keyframes(bones_pos[bn])
@@ -751,8 +751,9 @@ def build_gun(gun):
 
 
 def main():
-    if os.path.exists(OUT):
-        shutil.rmtree(OUT)
+    for d in (BP, RP):
+        if os.path.exists(d):
+            shutil.rmtree(d)
     os.makedirs(os.path.join(RP, "textures", NS, "items"), exist_ok=True)
     print("Generando armas:")
     for g in GUNS:
