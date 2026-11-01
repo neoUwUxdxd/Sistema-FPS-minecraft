@@ -32,7 +32,7 @@ import cubes  # noqa: E402
 import fpview  # noqa: E402
 import gunlib  # noqa: E402
 import preview  # noqa: E402
-from tuning import FP_TUNING, TP_TUNING  # noqa: E402
+from tuning import FP_CORRECTION, FP_TUNING, TP_TUNING  # noqa: E402
 
 JAVA_ASSETS = os.path.join(REPO, "src", "main", "resources", "assets", "fpsrealista")
 OUT = os.path.join(REPO, "bedrock")
@@ -47,7 +47,7 @@ D = 8.0                       # densidad de textura del atlas (px por cm)
 SW = 128                      # tamano de cada muestra de material en el atlas
 FPS = 30.0                    # muestreo de animaciones
 
-VERSION = [1, 0, 0]
+VERSION = [1, 0, 1]
 MIN_ENGINE = [1, 21, 130]
 SCRIPT_API = "2.4.0"
 
@@ -374,7 +374,13 @@ def fp_root():
     Ry180 = gunlib.rot_matrix(0, 180, 0)
     R_root = R_arm.T @ Ry180
     off = R_arm.T @ (eye - p)
-    return off, bedrock_values_from_Bspace(R_root)
+    # correccion medida en el juego: marco real = marco calculado * C  ->  raiz' = C^-1 * raiz
+    c = FP_CORRECTION
+    Rc = gunlib.rot_matrix(*c["rot"])
+    sc = math.exp(c["log_scale"])
+    R_root = Rc.T @ R_root
+    off = Rc.T @ (off - np.array(c["t"]))
+    return off, bedrock_values_from_Bspace(R_root), 1.0 / sc
 
 
 def tp_root(mj):
@@ -521,7 +527,7 @@ def lerp_expr(h, a, s=None):
     return e
 
 
-def procedural_anims(gun, mj, fp_off, fp_rot, tp_off, tp_rot, tp_scale):
+def procedural_anims(gun, mj, fp_off, fp_rot, tp_off, tp_rot, tp_scale, fp_scale):
     hip_p, hip_r = view_place(mj, 0.0)
     ads_p, ads_r = view_place(mj, 1.0)
     spr_p, spr_r = view_place(mj, 0.0, 1.0)
@@ -536,7 +542,7 @@ def procedural_anims(gun, mj, fp_off, fp_rot, tp_off, tp_rot, tp_scale):
     root = {
         "position": [f"c.is_first_person ? {fm(fp_off[i])} : {fm(tp_off[i])}" for i in range(3)],
         "rotation": [f"c.is_first_person ? {fm(fp_rot[i])} : {fm(tp_rot[i])}" for i in range(3)],
-        "scale": f"c.is_first_person ? 1 : {fm(tp_scale)}",
+        "scale": f"c.is_first_person ? {fm(fp_scale)} : {fm(tp_scale)}",
     }
     bones = {
         "root": root,
@@ -553,7 +559,7 @@ def procedural_anims(gun, mj, fp_off, fp_rot, tp_off, tp_rot, tp_scale):
     if "selector" in names:
         bones["selector"] = {"rotation": ["q.property('fps:mode') * 40", 0, 0]}
     for hb in mj.get("hidden", []):
-        bones[hb] = {"scale": "(v.clip ?? 0) ? 1 : 0"}
+        bones[hb] = {"scale": "v.clip ? 1 : 0"}
     proc = {"loop": True, "bones": bones}
 
     # brazos en reposo: interpolacion cadera <-> apuntado
@@ -579,29 +585,29 @@ def pre_animation(gun):
     kick = KICK[gun]
     lines = [
         "v.dt = math.clamp(q.delta_time, 0, 0.05);",
-        "v.busy = v.clip ?? 0;",
-        f"v.ads = math.clamp((v.ads ?? 0) + ((q.is_sneaking && !v.busy && !q.is_sprinting) ? v.dt / {ads} : -v.dt * 1.3 / {ads}), 0, 1);",
+        "v.busy = v.clip;",
+        f"v.ads = math.clamp(v.ads + ((q.is_sneaking && !v.busy && !q.is_sprinting) ? v.dt / {ads} : -v.dt * 1.3 / {ads}), 0, 1);",
         "v.e = v.ads * v.ads * (3 - 2 * v.ads);",
-        "v.spr = math.clamp((v.spr ?? 0) + ((q.is_sprinting && v.ads < 0.1 && !v.busy) ? v.dt * 5 : -v.dt * 6), 0, 1);",
+        "v.spr = math.clamp(v.spr + ((q.is_sprinting && v.ads < 0.1 && !v.busy) ? v.dt * 5 : -v.dt * 6), 0, 1);",
         "v.se = v.spr * v.spr * (3 - 2 * v.spr);",
         "v.shot = q.property('fps:shot');",
-        "v.trig = (v.ready ?? 0) && ((v.last_shot ?? 0) != v.shot);",
+        "v.trig = v.ready && (v.last_shot != v.shot);",
         "v.last_shot = v.shot;",
         "v.ready = 1;",
         f"v.kf = {kick} * (1 - 0.45 * v.e);",
         # muelles de retroceso (Euler semi-implicito)
-        "v.kbv = (v.kbv ?? 0) + (v.trig ? 1.1 * v.kf : 0);",
-        "v.kbv = v.kbv + (-260 * (v.kb ?? 0) - 17.7 * v.kbv) * v.dt;",
-        "v.kb = (v.kb ?? 0) + v.kbv * v.dt;",
-        "v.kpv = (v.kpv ?? 0) + (v.trig ? 70 * v.kf * math.random(0.8, 1.2) : 0);",
-        "v.kpv = v.kpv + (-220 * (v.kp ?? 0) - 13.3 * v.kpv) * v.dt;",
-        "v.kp = (v.kp ?? 0) + v.kpv * v.dt;",
-        "v.kyv = (v.kyv ?? 0) + (v.trig ? 25 * v.kf * math.random(-1, 1) : 0);",
-        "v.kyv = v.kyv + (-200 * (v.ky ?? 0) - 14.1 * v.kyv) * v.dt;",
-        "v.ky = (v.ky ?? 0) + v.kyv * v.dt;",
-        "v.krv = (v.krv ?? 0) + (v.trig ? 45 * v.kf * math.random(-1, 1) : 0);",
-        "v.krv = v.krv + (-180 * (v.kr ?? 0) - 10.7 * v.krv) * v.dt;",
-        "v.kr = (v.kr ?? 0) + v.krv * v.dt;",
+        "v.kbv = v.kbv + (v.trig ? 1.1 * v.kf : 0);",
+        "v.kbv = v.kbv + (-260 * v.kb - 17.7 * v.kbv) * v.dt;",
+        "v.kb = v.kb + v.kbv * v.dt;",
+        "v.kpv = v.kpv + (v.trig ? 70 * v.kf * math.random(0.8, 1.2) : 0);",
+        "v.kpv = v.kpv + (-220 * v.kp - 13.3 * v.kpv) * v.dt;",
+        "v.kp = v.kp + v.kpv * v.dt;",
+        "v.kyv = v.kyv + (v.trig ? 25 * v.kf * math.random(-1, 1) : 0);",
+        "v.kyv = v.kyv + (-200 * v.ky - 14.1 * v.kyv) * v.dt;",
+        "v.ky = v.ky + v.kyv * v.dt;",
+        "v.krv = v.krv + (v.trig ? 45 * v.kf * math.random(-1, 1) : 0);",
+        "v.krv = v.krv + (-180 * v.kr - 10.7 * v.krv) * v.dt;",
+        "v.kr = v.kr + v.krv * v.dt;",
         f"v.scoped = {'c.is_first_person && v.e > 0.92' if gun in SCOPED else '0'};",
     ]
     return lines
@@ -624,7 +630,7 @@ def controllers(gun, clips):
         if an is None or an not in clips:
             continue
         states["default"]["transitions"].append(
-            {state: f"q.property('fps:anim') == {code} && q.property('fps:seq') != (v.seq ?? 0)"})
+            {state: f"q.property('fps:anim') == {code} && q.property('fps:seq') != v.seq"})
         states[state] = {
             "animations": [an],
             "on_entry": ["v.clip = 1;", "v.seq = q.property('fps:seq');"],
@@ -702,9 +708,9 @@ def build_gun(gun):
         "bones": bones}]}
     write_json(os.path.join(RP, "models", "entity", f"{gun}.geo.json"), geo)
 
-    fp_off, fp_rot = fp_root()
+    fp_off, fp_rot, fp_scale = fp_root()
     tp_off, tp_rot, tp_scale = tp_root(mj)
-    proc, arms_idle, empty = procedural_anims(gun, mj, fp_off, fp_rot, tp_off, tp_rot, tp_scale)
+    proc, arms_idle, empty = procedural_anims(gun, mj, fp_off, fp_rot, tp_off, tp_rot, tp_scale, fp_scale)
     anims = {f"animation.{NS}.{gun}.procedural": proc, f"animation.{NS}.{gun}.arms_idle": arms_idle}
     if empty:
         anims[f"animation.{NS}.{gun}.empty"] = empty
@@ -726,9 +732,9 @@ def build_gun(gun):
         anim_refs[name] = key
     if empty:
         anim_refs["empty"] = f"animation.{NS}.{gun}.empty"
-    animate = ["procedural", {"arms_idle": "1 - (v.clip ?? 0)"}, "actions", "fire_ctrl"]
+    animate = ["procedural", {"arms_idle": "1 - v.clip"}, "actions", "fire_ctrl"]
     if empty:
-        animate.insert(2, {"empty": "q.property('fps:empty') * (1 - (v.clip ?? 0))"})
+        animate.insert(2, {"empty": "q.property('fps:empty') * (1 - v.clip)"})
     att = {"format_version": "1.10.0", "minecraft:attachable": {"description": {
         "identifier": f"{NS}:{gun}",
         "item": {f"{NS}:{gun}": "query.is_owner_identifier_any('minecraft:player')"},

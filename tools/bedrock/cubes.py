@@ -71,6 +71,35 @@ def intervals_at(poly, v):
     return [(xs[i], xs[i + 1]) for i in range(0, len(xs) - 1, 2)]
 
 
+def principal_angle(poly):
+    """Angulo (grados) del eje principal del contorno y su centroide."""
+    n = len(poly)
+    L = cu = cv = 0.0
+    for i in range(n):
+        (u0, v0), (u1, v1) = poly[i], poly[(i + 1) % n]
+        l = math.hypot(u1 - u0, v1 - v0)
+        L += l
+        cu += (u0 + u1) / 2 * l
+        cv += (v0 + v1) / 2 * l
+    cu /= L or 1
+    cv /= L or 1
+    suu = svv = suv = 0.0
+    for i in range(n):
+        (u0, v0), (u1, v1) = poly[i], poly[(i + 1) % n]
+        l = math.hypot(u1 - u0, v1 - v0)
+        du, dv = (u0 + u1) / 2 - cu, (v0 + v1) / 2 - cv
+        suu += du * du * l
+        svv += dv * dv * l
+        suv += du * dv * l
+    ang = 0.5 * math.degrees(math.atan2(2 * suv, suu - svv))
+    # angulo del eje mayor en [-90, 90]; preferimos el mas cercano a los ejes del perfil
+    if ang > 45:
+        ang -= 90
+    elif ang < -45:
+        ang += 90
+    return ang, (cu, cv)
+
+
 def slice_profile(poly):
     """Devuelve rectangulos (u0,u1,v0,v1) que aproximan el poligono."""
     us = [p[0] for p in poly]
@@ -166,9 +195,20 @@ def part_cubes(p):
             p1 = [tuple(q) for q in p["profile2"]]
             p0 = [((a[0] + b[0]) / 2, (a[1] + b[1]) / 2) for a, b in zip(p0, p1)]
         a0, a1 = p["a"]
-        for (u0, u1, v0, v1) in slice_profile(p0):
-            lo, hi = box_from_uva(axis, u0, u1, v0, v1, min(a0, a1), max(a0, a1))
-            add(lo, hi)
+        theta, (cu, cv) = principal_angle(p0)
+        if abs(theta) < 4.0 or abs(theta) > 86.0:
+            for (u0, u1, v0, v1) in slice_profile(p0):
+                lo, hi = box_from_uva(axis, u0, u1, v0, v1, min(a0, a1), max(a0, a1))
+                add(lo, hi)
+        else:
+            # laminas alineadas con el eje principal de la silueta (evita el efecto sierra)
+            ct, st_ = math.cos(math.radians(-theta)), math.sin(math.radians(-theta))
+            rp = [(cu + (u - cu) * ct - (v - cv) * st_, cv + (u - cu) * st_ + (v - cv) * ct) for (u, v) in p0]
+            piv = to3(axis, cu, cv, (a0 + a1) * 0.5)
+            rot = {"z": (0, 0, theta), "x": (-theta, 0, 0), "y": (0, -theta, 0)}[axis]
+            for (u0, u1, v0, v1) in slice_profile(rp):
+                lo, hi = box_from_uva(axis, u0, u1, v0, v1, min(a0, a1), max(a0, a1))
+                add(lo, hi, rot, piv)
     elif t == "decal":
         c = p["corners"]
         lo = [min(q[i] for q in c) for i in range(3)]

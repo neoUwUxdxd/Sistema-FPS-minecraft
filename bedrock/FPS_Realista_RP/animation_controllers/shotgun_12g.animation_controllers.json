@@ -10,22 +10,22 @@
      ],
      "transitions": [
       {
-       "draw": "q.property('fps:anim') == 1 && q.property('fps:seq') != (v.seq ?? 0)"
+       "draw": "q.property('fps:anim') == 1 && q.property('fps:seq') != v.seq"
       },
       {
-       "inspect": "q.property('fps:anim') == 4 && q.property('fps:seq') != (v.seq ?? 0)"
+       "inspect": "q.property('fps:anim') == 4 && q.property('fps:seq') != v.seq"
       },
       {
-       "cycle": "q.property('fps:anim') == 5 && q.property('fps:seq') != (v.seq ?? 0)"
+       "cycle": "q.property('fps:anim') == 5 && q.property('fps:seq') != v.seq"
       },
       {
-       "shell_start": "q.property('fps:anim') == 6 && q.property('fps:seq') != (v.seq ?? 0)"
+       "shell_start": "q.property('fps:anim') == 6 && q.property('fps:seq') != v.seq"
       },
       {
-       "shell_loop": "q.property('fps:anim') == 7 && q.property('fps:seq') != (v.seq ?? 0)"
+       "shell_loop": "q.property('fps:anim') == 7 && q.property('fps:seq') != v.seq"
       },
       {
-       "shell_end": "q.property('fps:anim') == 8 && q.property('fps:seq') != (v.seq ?? 0)"
+       "shell_end": "q.property('fps:anim') == 8 && q.property('fps:seq') != v.seq"
       }
      ]
     },

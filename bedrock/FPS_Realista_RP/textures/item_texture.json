@@ -34,6 +34,12 @@
   },
   "fps_gun_parts": {
    "textures": "textures/fps/items/gun_parts"
+  },
+  "fps_sonda_a": {
+   "textures": "textures/fps/items/sonda_a"
+  },
+  "fps_sonda_b": {
+   "textures": "textures/fps/items/sonda_b"
   }
  }
 }

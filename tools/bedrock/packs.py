@@ -90,6 +90,9 @@ def build_all(B):
         dst = os.path.join(RP, "textures", NS, "items", f"{a}.png")
         Image.open(src).convert("RGBA").resize((32, 32), Image.NEAREST).save(dst)
         texture_data[f"{NS}_{a}"] = {"textures": f"textures/{NS}/items/{a}"}
+    build_probes(B)
+    for nm in ("sonda_a", "sonda_b"):
+        texture_data[f"{NS}_{nm}"] = {"textures": f"textures/{NS}/items/{nm}"}
     write(os.path.join(RP, "textures", "item_texture.json"),
           {"resource_pack_name": "fps_realista", "texture_name": "atlas.items", "texture_data": texture_data})
 
@@ -140,7 +143,7 @@ def build_all(B):
         }},
     })
     names = ", ".join(f"'{NS}:{g}'" for g in B.GUNS)
-    aim = f"(1 - (variable.is_first_person ?? 0))"
+    aim = "(1 - variable.is_first_person)"
     write(os.path.join(RP, "animations", f"{NS}_player.animation.json"), {
         "format_version": "1.8.0",
         "animations": {f"animation.{NS}.player.aim": {
@@ -189,6 +192,8 @@ def build_all(B):
     for g, (es, en) in list(B.NAMES.items()) + list(B.AMMO.items()):
         lang_es.append(f"item.{NS}:{g}.name={es}")
         lang_en.append(f"item.{NS}:{g}.name={en}")
+    lang_es += [f"item.{NS}:sonda_a.name=Sonda de calibración A", f"item.{NS}:sonda_b.name=Sonda de calibración B"]
+    lang_en += [f"item.{NS}:sonda_a.name=Calibration probe A", f"item.{NS}:sonda_b.name=Calibration probe B"]
     texts = {
         "es_ES": lang_es + [
             "fps.hud.reload=§c[Agacharse + Saltar] RECARGAR",
@@ -355,3 +360,59 @@ def particles(NS):
     }
     P["sparks"] = p
     return P
+
+
+def build_probes(B):
+    """Objetos de calibracion: ejes de colores unidos a la mano (A estatica, B con rotacion conocida)."""
+    NS, BP, RP, write = B.NS, B.BP, B.RP, B.write_json
+    tex = Image.new("RGBA", (16, 16))
+    cols = [(255, 255, 255), (230, 30, 30), (30, 200, 30), (40, 80, 255), (255, 220, 0), (255, 0, 255)]
+    for i, c in enumerate(cols):
+        for y in range(4):
+            for x in range(4):
+                tex.putpixel(((i % 4) * 4 + x, (i // 4) * 4 + y), c + (255,))
+    os.makedirs(os.path.join(RP, "textures", NS, "probe"), exist_ok=True)
+    tex.save(os.path.join(RP, "textures", NS, "probe", "axes.png"))
+
+    def cube(origin, size, ci):
+        u, v = (ci % 4) * 4 + 1, (ci // 4) * 4 + 1
+        f = {"uv": [u, v], "uv_size": [2, 2]}
+        return {"origin": origin, "size": size, "uv": {k: f for k in ("north", "south", "east", "west", "up", "down")}}
+
+    cubes = [
+        cube([-0.75, -0.75, -0.75], [1.5, 1.5, 1.5], 0),      # centro blanco
+        cube([0.75, -0.3, -0.3], [8, 0.6, 0.6], 1),           # +X rojo
+        cube([-0.3, 0.75, -0.3], [0.6, 8, 0.6], 2),           # +Y verde
+        cube([-0.3, -0.3, 0.75], [0.6, 0.6, 8], 3),           # +Z azul
+        cube([-0.6, -0.6, -6.0], [1.2, 1.2, 1.2], 4),         # -Z amarillo
+        cube([7.0, -0.8, -0.8], [1.6, 1.6, 1.6], 1),          # punta +X
+        cube([-0.8, 7.0, -0.8], [1.6, 1.6, 1.6], 2),          # punta +Y
+        cube([-0.8, -0.8, 7.0], [1.6, 1.6, 1.6], 3),          # punta +Z
+    ]
+    write(os.path.join(RP, "models", "entity", "probe.geo.json"), {"format_version": "1.16.0", "minecraft:geometry": [{
+        "description": {"identifier": f"geometry.{NS}.probe", "texture_width": 16, "texture_height": 16,
+                        "visible_bounds_width": 4, "visible_bounds_height": 4, "visible_bounds_offset": [0, 1, 0]},
+        "bones": [{"name": "root", "pivot": [0, 0, 0], "binding": "q.item_slot_to_bone_name(c.item_slot)", "cubes": cubes}]}]})
+    write(os.path.join(RP, "animations", f"{NS}_probe.animation.json"), {"format_version": "1.8.0", "animations": {
+        f"animation.{NS}.probe.test": {"loop": True, "bones": {"root": {
+            "rotation": [90, 0, 0], "position": [0, "c.is_first_person ? 4 : 0", 0]}}}}})
+    for name, animated in (("sonda_a", False), ("sonda_b", True)):
+        desc = {
+            "identifier": f"{NS}:{name}",
+            "item": {f"{NS}:{name}": "query.is_owner_identifier_any('minecraft:player')"},
+            "materials": {"default": "entity_alphatest"},
+            "textures": {"default": f"textures/{NS}/probe/axes"},
+            "geometry": {"default": f"geometry.{NS}.probe"},
+            "render_controllers": [f"controller.render.{NS}.gun"],
+        }
+        if animated:
+            desc["animations"] = {"test": f"animation.{NS}.probe.test"}
+            desc["scripts"] = {"animate": ["test"]}
+        write(os.path.join(RP, "attachables", f"{name}.json"), {"format_version": "1.10.0", "minecraft:attachable": {"description": desc}})
+        write(os.path.join(BP, "items", f"{name}.json"), {"format_version": "1.21.60", "minecraft:item": {
+            "description": {"identifier": f"{NS}:{name}", "menu_category": {"category": "equipment"}},
+            "components": {"minecraft:icon": {"textures": {"default": f"{NS}_{name}"}},
+                           "minecraft:display_name": {"value": f"item.{NS}:{name}.name"},
+                           "minecraft:max_stack_size": 1, "minecraft:hand_equipped": {"value": True}}}})
+        icon = tex.resize((32, 32), Image.NEAREST)
+        icon.save(os.path.join(RP, "textures", NS, "items", f"{name}.png"))

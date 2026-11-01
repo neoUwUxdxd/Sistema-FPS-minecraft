@@ -1,0 +1,23 @@
+{
+ "format_version": "1.10.0",
+ "minecraft:attachable": {
+  "description": {
+   "identifier": "fps:sonda_a",
+   "item": {
+    "fps:sonda_a": "query.is_owner_identifier_any('minecraft:player')"
+   },
+   "materials": {
+    "default": "entity_alphatest"
+   },
+   "textures": {
+    "default": "textures/fps/probe/axes"
+   },
+   "geometry": {
+    "default": "geometry.fps.probe"
+   },
+   "render_controllers": [
+    "controller.render.fps.gun"
+   ]
+  }
+ }
+}

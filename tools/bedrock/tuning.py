@@ -12,6 +12,15 @@ FP_TUNING = {
     "eye_height_px": 27.65,
 }
 
+# Correccion medida en el juego (calibrada con capturas reales de Bedrock): transformacion
+# entre el marco de rightItem calculado y el real. rot en grados (orden X->Y->Z, espacio Bedrock),
+# t en px, escala logaritmica.
+FP_CORRECTION = {
+    "rot": [0.0, 0.0, 0.0],
+    "t": [0.0, 0.0, 0.0],
+    "log_scale": 0.0,
+}
+
 TP_TUNING = {
     # pose del brazo derecho que aplica animation.fps.player.aim en tercera persona (valores Bedrock)
     "arm_rot": (-90.0, -5.0, 0.0),

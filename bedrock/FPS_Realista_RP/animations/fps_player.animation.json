@@ -7,15 +7,15 @@
    "bones": {
     "rightarm": {
      "rotation": [
-      "(1 - (variable.is_first_person ?? 0)) * (-90 + q.target_x_rotation) ",
-      "(1 - (variable.is_first_person ?? 0)) * (q.target_y_rotation - 5)",
+      "(1 - variable.is_first_person) * (-90 + q.target_x_rotation) ",
+      "(1 - variable.is_first_person) * (q.target_y_rotation - 5)",
       0
      ]
     },
     "leftarm": {
      "rotation": [
-      "(1 - (variable.is_first_person ?? 0)) * (-90 + q.target_x_rotation)",
-      "(1 - (variable.is_first_person ?? 0)) * (q.target_y_rotation + 38)",
+      "(1 - variable.is_first_person) * (-90 + q.target_x_rotation)",
+      "(1 - variable.is_first_person) * (q.target_y_rotation + 38)",
       0
      ]
     }

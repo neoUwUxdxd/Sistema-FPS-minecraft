@@ -10,16 +10,16 @@
      ],
      "transitions": [
       {
-       "draw": "q.property('fps:anim') == 1 && q.property('fps:seq') != (v.seq ?? 0)"
+       "draw": "q.property('fps:anim') == 1 && q.property('fps:seq') != v.seq"
       },
       {
-       "reload": "q.property('fps:anim') == 2 && q.property('fps:seq') != (v.seq ?? 0)"
+       "reload": "q.property('fps:anim') == 2 && q.property('fps:seq') != v.seq"
       },
       {
-       "reload_empty": "q.property('fps:anim') == 3 && q.property('fps:seq') != (v.seq ?? 0)"
+       "reload_empty": "q.property('fps:anim') == 3 && q.property('fps:seq') != v.seq"
       },
       {
-       "inspect": "q.property('fps:anim') == 4 && q.property('fps:seq') != (v.seq ?? 0)"
+       "inspect": "q.property('fps:anim') == 4 && q.property('fps:seq') != v.seq"
       }
      ]
     },

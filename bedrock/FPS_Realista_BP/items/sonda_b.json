@@ -1,0 +1,25 @@
+{
+ "format_version": "1.21.60",
+ "minecraft:item": {
+  "description": {
+   "identifier": "fps:sonda_b",
+   "menu_category": {
+    "category": "equipment"
+   }
+  },
+  "components": {
+   "minecraft:icon": {
+    "textures": {
+     "default": "fps_sonda_b"
+    }
+   },
+   "minecraft:display_name": {
+    "value": "item.fps:sonda_b.name"
+   },
+   "minecraft:max_stack_size": 1,
+   "minecraft:hand_equipped": {
+    "value": true
+   }
+  }
+ }
+}

@@ -185,12 +185,15 @@ function getModeIndex(p, gunId) {
     return typeof v === "number" ? v % GUNS[gunId].modes.length : 0;
 }
 
+let PROPS_FAIL = false;
+
 /** @param {import("@minecraft/server").Player} p @param {string} id @param {boolean|number} v */
 function trySetProp(p, id, v) {
     try {
         p.setProperty(id, v);
     } catch (e) {
         // si el player.json del pack fue sobrescrito por otro add-on, las animaciones no se sincronizan
+        PROPS_FAIL = true;
     }
 }
 
@@ -729,7 +732,8 @@ function hud(p, s, g, gunId, mode) {
     let status = "";
     if (s.action === "reload" || s.action === "reload_empty" || (s.action && s.action.startsWith("shell"))) status = " §7recargando…";
     else if (ammo === 0) status = " §c[Agacharse+Saltar] RECARGAR";
-    p.onScreenDisplay.setActionBar(`${col}§l${ammo}§r§7 / ${reserve}  §6${MODE_NAMES[mode]}  ${bar}${hit}${status}`);
+    const diag = PROPS_FAIL ? " §c[sin sync de animación]" : "";
+    p.onScreenDisplay.setActionBar(`${col}§l${ammo}§r§7 / ${reserve}  §6${MODE_NAMES[mode]}  ${bar}${hit}${status}${diag}`);
 }
 
 // --------------------------------------------------------------------------- eventos

@@ -48,7 +48,7 @@
      "scale": "c.is_first_person ? 1 : 0"
     },
     "shell": {
-     "scale": "(v.clip ?? 0) ? 1 : 0"
+     "scale": "v.clip ? 1 : 0"
     }
    }
   },
