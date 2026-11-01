@@ -42,3 +42,4 @@ repo/
 ### Herramientas ###
 __pycache__/
 tools/out/
+dist/

@@ -1,0 +1,16 @@
+pack.name=Realistic FPS
+pack.description=Hyperrealistic firearms: detailed 3D models, animated hands, recoil, ADS and ballistics.
+item.fps:pistol_9mm.name=9mm Pistol
+item.fps:carbine_556.name=5.56 Tactical Carbine
+item.fps:rifle_762.name=7.62 Assault Rifle
+item.fps:shotgun_12g.name=12 Gauge Pump Shotgun
+item.fps:sniper_308.name=.308 Precision Rifle
+item.fps:ammo_9mm.name=9x19mm Rounds
+item.fps:ammo_556.name=5.56x45mm Rounds
+item.fps:ammo_762.name=7.62x39mm Rounds
+item.fps:ammo_12g.name=12 Gauge Shells
+item.fps:ammo_308.name=.308 Win Rounds
+item.fps:gun_parts.name=Gun Parts
+fps.hud.reload=§c[Sneak + Jump] RELOAD
+fps.hud.noammo=§cNO AMMO
+death.attack.fps.bullet=%1$s was shot by %2$s

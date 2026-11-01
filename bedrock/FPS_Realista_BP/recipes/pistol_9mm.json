@@ -1,0 +1,33 @@
+{
+ "format_version": "1.20.10",
+ "minecraft:recipe_shaped": {
+  "description": {
+   "identifier": "fps:pistol_9mm"
+  },
+  "tags": [
+   "crafting_table"
+  ],
+  "pattern": [
+   "PII",
+   " GW"
+  ],
+  "key": {
+   "P": {
+    "item": "fps:gun_parts"
+   },
+   "I": {
+    "item": "minecraft:iron_ingot"
+   },
+   "G": {
+    "item": "minecraft:gunpowder"
+   },
+   "W": {
+    "item": "minecraft:black_dye"
+   }
+  },
+  "result": {
+   "item": "fps:pistol_9mm",
+   "count": 1
+  }
+ }
+}

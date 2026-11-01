@@ -1,0 +1,37 @@
+{
+ "format_version": "1.20.10",
+ "minecraft:recipe_shaped": {
+  "description": {
+   "identifier": "fps:carbine_556"
+  },
+  "tags": [
+   "crafting_table"
+  ],
+  "pattern": [
+   "IIP",
+   "PRW",
+   " WB"
+  ],
+  "key": {
+   "I": {
+    "item": "minecraft:iron_ingot"
+   },
+   "P": {
+    "item": "fps:gun_parts"
+   },
+   "R": {
+    "item": "minecraft:redstone"
+   },
+   "W": {
+    "item": "minecraft:black_dye"
+   },
+   "B": {
+    "item": "minecraft:iron_block"
+   }
+  },
+  "result": {
+   "item": "fps:carbine_556",
+   "count": 1
+  }
+ }
+}

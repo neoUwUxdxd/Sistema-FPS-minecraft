@@ -1,0 +1,16 @@
+pack.name=FPS Realista
+pack.description=Armas de fuego hiperrealistas: modelos 3D detallados, animaciones con manos, retroceso, apuntado y balística.
+item.fps:pistol_9mm.name=Pistola 9 mm
+item.fps:carbine_556.name=Carabina táctica 5,56
+item.fps:rifle_762.name=Fusil de asalto 7,62
+item.fps:shotgun_12g.name=Escopeta de corredera cal. 12
+item.fps:sniper_308.name=Rifle de precisión .308
+item.fps:ammo_9mm.name=Cartuchos 9×19 mm
+item.fps:ammo_556.name=Cartuchos 5,56×45 mm
+item.fps:ammo_762.name=Cartuchos 7,62×39 mm
+item.fps:ammo_12g.name=Cartuchos del calibre 12
+item.fps:ammo_308.name=Cartuchos .308 Win
+item.fps:gun_parts.name=Piezas de arma
+fps.hud.reload=§c[Agacharse + Saltar] RECARGAR
+fps.hud.noammo=§cSIN MUNICIÓN
+death.attack.fps.bullet=%1$s fue abatido por %2$s

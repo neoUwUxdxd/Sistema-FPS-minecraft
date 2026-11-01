@@ -1,0 +1,29 @@
+{
+ "format_version": "1.20.10",
+ "minecraft:recipe_shapeless": {
+  "description": {
+   "identifier": "fps:ammo_12g"
+  },
+  "tags": [
+   "crafting_table"
+  ],
+  "ingredients": [
+   {
+    "item": "minecraft:paper"
+   },
+   {
+    "item": "minecraft:gunpowder"
+   },
+   {
+    "item": "minecraft:gold_nugget"
+   },
+   {
+    "item": "minecraft:iron_nugget"
+   }
+  ],
+  "result": {
+   "item": "fps:ammo_12g",
+   "count": 8
+  }
+ }
+}

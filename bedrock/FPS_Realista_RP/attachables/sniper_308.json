@@ -1,0 +1,90 @@
+{
+ "format_version": "1.10.0",
+ "minecraft:attachable": {
+  "description": {
+   "identifier": "fps:sniper_308",
+   "item": {
+    "fps:sniper_308": "query.is_owner_identifier_any('minecraft:player')"
+   },
+   "materials": {
+    "default": "entity_alphatest",
+    "glass": "entity_alphablend",
+    "enchanted": "entity_alphatest_glint"
+   },
+   "textures": {
+    "default": "textures/fps/guns/sniper_308",
+    "enchanted": "textures/misc/enchanted_item_glint"
+   },
+   "geometry": {
+    "default": "geometry.fps.sniper_308"
+   },
+   "animations": {
+    "procedural": "animation.fps.sniper_308.procedural",
+    "arms_idle": "animation.fps.sniper_308.arms_idle",
+    "actions": "controller.animation.fps.sniper_308.actions",
+    "fire_ctrl": "controller.animation.fps.sniper_308.fire",
+    "draw": "animation.fps.sniper_308.draw",
+    "fire": "animation.fps.sniper_308.fire",
+    "bolt": "animation.fps.sniper_308.bolt",
+    "reload": "animation.fps.sniper_308.reload",
+    "reload_empty": "animation.fps.sniper_308.reload_empty",
+    "inspect": "animation.fps.sniper_308.inspect"
+   },
+   "scripts": {
+    "pre_animation": [
+     "v.dt = math.clamp(q.delta_time, 0, 0.05);",
+     "v.busy = v.clip ?? 0;",
+     "v.ads = math.clamp((v.ads ?? 0) + ((q.is_sneaking && !v.busy && !q.is_sprinting) ? v.dt / 0.38 : -v.dt * 1.3 / 0.38), 0, 1);",
+     "v.e = v.ads * v.ads * (3 - 2 * v.ads);",
+     "v.spr = math.clamp((v.spr ?? 0) + ((q.is_sprinting && v.ads < 0.1 && !v.busy) ? v.dt * 5 : -v.dt * 6), 0, 1);",
+     "v.se = v.spr * v.spr * (3 - 2 * v.spr);",
+     "v.shot = q.property('fps:shot');",
+     "v.trig = (v.ready ?? 0) && ((v.last_shot ?? 0) != v.shot);",
+     "v.last_shot = v.shot;",
+     "v.ready = 1;",
+     "v.kf = 2.8 * (1 - 0.45 * v.e);",
+     "v.kbv = (v.kbv ?? 0) + (v.trig ? 1.1 * v.kf : 0);",
+     "v.kbv = v.kbv + (-260 * (v.kb ?? 0) - 17.7 * v.kbv) * v.dt;",
+     "v.kb = (v.kb ?? 0) + v.kbv * v.dt;",
+     "v.kpv = (v.kpv ?? 0) + (v.trig ? 70 * v.kf * math.random(0.8, 1.2) : 0);",
+     "v.kpv = v.kpv + (-220 * (v.kp ?? 0) - 13.3 * v.kpv) * v.dt;",
+     "v.kp = (v.kp ?? 0) + v.kpv * v.dt;",
+     "v.kyv = (v.kyv ?? 0) + (v.trig ? 25 * v.kf * math.random(-1, 1) : 0);",
+     "v.kyv = v.kyv + (-200 * (v.ky ?? 0) - 14.1 * v.kyv) * v.dt;",
+     "v.ky = (v.ky ?? 0) + v.kyv * v.dt;",
+     "v.krv = (v.krv ?? 0) + (v.trig ? 45 * v.kf * math.random(-1, 1) : 0);",
+     "v.krv = v.krv + (-180 * (v.kr ?? 0) - 10.7 * v.krv) * v.dt;",
+     "v.kr = (v.kr ?? 0) + v.krv * v.dt;",
+     "v.scoped = c.is_first_person && v.e > 0.92;"
+    ],
+    "animate": [
+     "procedural",
+     {
+      "arms_idle": "1 - (v.clip ?? 0)"
+     },
+     "actions",
+     "fire_ctrl"
+    ]
+   },
+   "sound_effects": {
+    "!eject": "fps.!eject",
+    "bolt_back": "fps.bolt_back",
+    "bolt_down": "fps.bolt_down",
+    "bolt_forward": "fps.bolt_forward",
+    "bolt_up": "fps.bolt_up",
+    "gun_draw": "fps.gun_draw",
+    "gun_handle": "fps.gun_handle",
+    "mag_in": "fps.mag_in",
+    "mag_out": "fps.mag_out"
+   },
+   "particle_effects": {
+    "casing": "fps:casing_rifle",
+    "flash": "fps:muzzle_flash",
+    "smoke": "fps:muzzle_smoke"
+   },
+   "render_controllers": [
+    "controller.render.fps.gun"
+   ]
+  }
+ }
+}

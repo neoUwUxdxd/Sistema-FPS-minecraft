@@ -33,3 +33,39 @@ jobs:
         with:
           name: fpsrealista-jar
           path: build/libs/*.jar
+
+  bedrock:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generar add-on de Bedrock
+        run: |
+          pip install numpy pillow
+          python3 tools/bedrock/build_bedrock.py
+
+      - name: Comprobar tipos del script (Script API 2.4.0)
+        run: |
+          mkdir -p /tmp/chk && cd /tmp/chk
+          npm init -y > /dev/null
+          npm install --silent @minecraft/server@2.4.0 typescript@5
+          cp $GITHUB_WORKSPACE/bedrock/FPS_Realista_BP/scripts/main.js .
+          echo 'declare const console: { warn(...a: any[]): void; log(...a: any[]): void };' > env.d.ts
+          npx tsc --allowJs --checkJs --noEmit --target es2022 --module es2022 --moduleResolution node --skipLibCheck main.js env.d.ts
+
+      - name: Upload .mcaddon
+        uses: actions/upload-artifact@v4
+        with:
+          name: fpsrealista-bedrock
+          path: dist/FPS_Realista.mcaddon

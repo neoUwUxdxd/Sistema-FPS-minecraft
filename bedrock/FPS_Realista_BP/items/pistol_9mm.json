@@ -1,0 +1,47 @@
+{
+ "format_version": "1.21.60",
+ "minecraft:item": {
+  "description": {
+   "identifier": "fps:pistol_9mm",
+   "menu_category": {
+    "category": "equipment"
+   }
+  },
+  "components": {
+   "minecraft:icon": {
+    "textures": {
+     "default": "fps_pistol_9mm"
+    }
+   },
+   "minecraft:display_name": {
+    "value": "item.fps:pistol_9mm.name"
+   },
+   "minecraft:max_stack_size": 1,
+   "minecraft:hand_equipped": {
+    "value": true
+   },
+   "minecraft:allow_off_hand": {
+    "value": false
+   },
+   "minecraft:can_destroy_in_creative": {
+    "value": false
+   },
+   "minecraft:use_modifiers": {
+    "use_duration": 3600,
+    "movement_modifier": 0.85,
+    "emit_vibrations": false
+   },
+   "minecraft:food": {
+    "nutrition": 0,
+    "saturation_modifier": 0,
+    "can_always_eat": true
+   },
+   "minecraft:tags": {
+    "tags": [
+     "fps:gun"
+    ]
+   },
+   "minecraft:interact_button": "Disparar"
+  }
+ }
+}

@@ -1,0 +1,156 @@
+{
+ "format_version": "1.10.0",
+ "animation_controllers": {
+  "controller.animation.fps.sniper_308.actions": {
+   "initial_state": "default",
+   "states": {
+    "default": {
+     "on_entry": [
+      "v.clip = 0;"
+     ],
+     "transitions": [
+      {
+       "draw": "q.property('fps:anim') == 1 && q.property('fps:seq') != (v.seq ?? 0)"
+      },
+      {
+       "reload": "q.property('fps:anim') == 2 && q.property('fps:seq') != (v.seq ?? 0)"
+      },
+      {
+       "reload_empty": "q.property('fps:anim') == 3 && q.property('fps:seq') != (v.seq ?? 0)"
+      },
+      {
+       "inspect": "q.property('fps:anim') == 4 && q.property('fps:seq') != (v.seq ?? 0)"
+      },
+      {
+       "cycle": "q.property('fps:anim') == 5 && q.property('fps:seq') != (v.seq ?? 0)"
+      }
+     ]
+    },
+    "draw": {
+     "animations": [
+      "draw"
+     ],
+     "on_entry": [
+      "v.clip = 1;",
+      "v.seq = q.property('fps:seq');"
+     ],
+     "transitions": [
+      {
+       "default": "q.all_animations_finished || q.property('fps:seq') != v.seq"
+      }
+     ],
+     "blend_transition": 0.08
+    },
+    "reload": {
+     "animations": [
+      "reload"
+     ],
+     "on_entry": [
+      "v.clip = 1;",
+      "v.seq = q.property('fps:seq');"
+     ],
+     "transitions": [
+      {
+       "default": "q.all_animations_finished || q.property('fps:seq') != v.seq"
+      }
+     ],
+     "blend_transition": 0.08
+    },
+    "reload_empty": {
+     "animations": [
+      "reload_empty"
+     ],
+     "on_entry": [
+      "v.clip = 1;",
+      "v.seq = q.property('fps:seq');"
+     ],
+     "transitions": [
+      {
+       "default": "q.all_animations_finished || q.property('fps:seq') != v.seq"
+      }
+     ],
+     "blend_transition": 0.08
+    },
+    "inspect": {
+     "animations": [
+      "inspect"
+     ],
+     "on_entry": [
+      "v.clip = 1;",
+      "v.seq = q.property('fps:seq');"
+     ],
+     "transitions": [
+      {
+       "default": "q.all_animations_finished || q.property('fps:seq') != v.seq"
+      }
+     ],
+     "blend_transition": 0.08
+    },
+    "cycle": {
+     "animations": [
+      "bolt"
+     ],
+     "on_entry": [
+      "v.clip = 1;",
+      "v.seq = q.property('fps:seq');"
+     ],
+     "transitions": [
+      {
+       "default": "q.all_animations_finished || q.property('fps:seq') != v.seq"
+      }
+     ],
+     "blend_transition": 0.08
+    }
+   }
+  },
+  "controller.animation.fps.sniper_308.fire": {
+   "initial_state": "init",
+   "states": {
+    "init": {
+     "transitions": [
+      {
+       "w0": "q.property('fps:shot') == 0"
+      },
+      {
+       "w1": "q.property('fps:shot') == 1"
+      }
+     ]
+    },
+    "w0": {
+     "transitions": [
+      {
+       "f1": "q.property('fps:shot') == 1"
+      }
+     ]
+    },
+    "w1": {
+     "transitions": [
+      {
+       "f0": "q.property('fps:shot') == 0"
+      }
+     ]
+    },
+    "f0": {
+     "animations": [
+      "fire"
+     ],
+     "transitions": [
+      {
+       "f1": "q.property('fps:shot') == 1"
+      }
+     ]
+    },
+    "f1": {
+     "animations": [
+      "fire"
+     ],
+     "transitions": [
+      {
+       "f0": "q.property('fps:shot') == 0"
+      }
+     ]
+    }
+   }
+  }
+ }
+}

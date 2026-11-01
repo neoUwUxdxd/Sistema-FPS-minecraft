@@ -1,0 +1,447 @@
+{
+ "format_version": "1.20.20",
+ "sound_definitions": {
+  "fps.pistol_shot": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 96.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/pistol_shot_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/pistol_shot_1",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/pistol_shot_2",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.carbine_shot": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 160.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/carbine_shot_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/carbine_shot_1",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/carbine_shot_2",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.rifle_shot": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 170.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/rifle_shot_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/rifle_shot_1",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/rifle_shot_2",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.shotgun_shot": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 150.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/shotgun_shot_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/shotgun_shot_1",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.sniper_shot": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 256.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/sniper_shot_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/sniper_shot_1",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.dry_fire": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 8.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/dry_fire",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.fire_select": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 8.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/fire_select",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.mag_out": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 12.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/mag_out_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/mag_out_1",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.mag_in": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 12.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/mag_in_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/mag_in_1",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.slide_back": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 12.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/slide_back",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.slide_release": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 14.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/slide_release",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.charge_back": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 12.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/charge_back",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.charge_release": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 16.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/charge_release",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.pump_back": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 16.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/pump_back",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.pump_forward": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 16.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/pump_forward",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.shell_insert": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 10.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/shell_insert_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/shell_insert_1",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.bolt_up": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 10.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/bolt_up",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.bolt_back": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 12.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/bolt_back",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.bolt_forward": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 12.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/bolt_forward",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.bolt_down": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 10.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/bolt_down",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.gun_draw": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 8.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/gun_draw_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/gun_draw_1",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.gun_handle": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 6.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/gun_handle_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/gun_handle_1",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.casing": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 10.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/casing_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/casing_1",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/casing_2",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/casing_3",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/casing_4",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/casing_5",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.shell_drop": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 10.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/shell_drop_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/shell_drop_1",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/shell_drop_2",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.hitmarker": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 4.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/hitmarker",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.headshot": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 4.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/headshot",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.impact_flesh": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 16.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/impact_flesh_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/impact_flesh_1",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/impact_flesh_2",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.impact_block": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 20.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/impact_block_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/impact_block_1",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/impact_block_2",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/impact_block_3",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.whizz": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 24.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/whizz_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/whizz_1",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/whizz_2",
+     "load_on_low_memory": true
+    }
+   ]
+  },
+  "fps.glass_hit": {
+   "category": "player",
+   "min_distance": 1.0,
+   "max_distance": 20.0,
+   "sounds": [
+    {
+     "name": "sounds/fps/glass_hit_0",
+     "load_on_low_memory": true
+    },
+    {
+     "name": "sounds/fps/glass_hit_1",
+     "load_on_low_memory": true
+    }
+   ]
+  }
+ }
+}

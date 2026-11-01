@@ -1,5 +1,9 @@
 # FPS Realista — sistema de armas hiperrealista para Minecraft
 
+> **Dos versiones:** mod para **Java (NeoForge 1.21.1)**, descrito aquí, y add-on para
+> **Bedrock 1.21.130+**, descrito en [`bedrock/README.md`](bedrock/README.md). Ambas salen
+> de los mismos modelos, animaciones, texturas y sonidos.
+
 Mod para **NeoForge 1.21.1** (Java 21) que añade armas de fuego al estilo de los
 shooters modernos: modelos 3D detallados, animaciones por fotogramas clave con
 manos que siguen las piezas (IK), retroceso físico, apuntado con miras,

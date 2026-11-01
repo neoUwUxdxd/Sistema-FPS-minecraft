@@ -1,0 +1,39 @@
+{
+ "resource_pack_name": "fps_realista",
+ "texture_name": "atlas.items",
+ "texture_data": {
+  "fps_pistol_9mm": {
+   "textures": "textures/fps/items/pistol_9mm"
+  },
+  "fps_carbine_556": {
+   "textures": "textures/fps/items/carbine_556"
+  },
+  "fps_rifle_762": {
+   "textures": "textures/fps/items/rifle_762"
+  },
+  "fps_shotgun_12g": {
+   "textures": "textures/fps/items/shotgun_12g"
+  },
+  "fps_sniper_308": {
+   "textures": "textures/fps/items/sniper_308"
+  },
+  "fps_ammo_9mm": {
+   "textures": "textures/fps/items/ammo_9mm"
+  },
+  "fps_ammo_556": {
+   "textures": "textures/fps/items/ammo_556"
+  },
+  "fps_ammo_762": {
+   "textures": "textures/fps/items/ammo_762"
+  },
+  "fps_ammo_12g": {
+   "textures": "textures/fps/items/ammo_12g"
+  },
+  "fps_ammo_308": {
+   "textures": "textures/fps/items/ammo_308"
+  },
+  "fps_gun_parts": {
+   "textures": "textures/fps/items/gun_parts"
+  }
+ }
+}

@@ -1,0 +1,22 @@
+{
+ "format_version": "1.21.60",
+ "minecraft:item": {
+  "description": {
+   "identifier": "fps:ammo_12g",
+   "menu_category": {
+    "category": "items"
+   }
+  },
+  "components": {
+   "minecraft:icon": {
+    "textures": {
+     "default": "fps_ammo_12g"
+    }
+   },
+   "minecraft:display_name": {
+    "value": "item.fps:ammo_12g.name"
+   },
+   "minecraft:max_stack_size": 64
+  }
+ }
+}
